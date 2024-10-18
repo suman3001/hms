@@ -1,5 +1,6 @@
 package com.hms.controller;
 
+import com.hms.payload.TokenDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,9 +28,6 @@ public class UserController {
         this.loginService = loginService;
 		
 	}
-	
-	
-	
 
 	@PostMapping("/signUp")
 	public ResponseEntity<?> createUser(@RequestBody AppUserDto appUserDto) {
@@ -41,10 +39,14 @@ public class UserController {
 		}
 	}
 	 @PostMapping("/login")
-	    public ResponseEntity<String> login(@RequestBody LoginDto dto){
+	    public ResponseEntity<?> login(@RequestBody LoginDto dto){
 	       String token = loginService.verifyLogin(dto);
 	        if(token!=null){
-	            return new ResponseEntity<>(token,HttpStatus.OK);
+				TokenDto tokenDto = new TokenDto();
+				tokenDto.setToken(token);
+				tokenDto.setType("JWT");
+
+	            return new ResponseEntity<>(tokenDto,HttpStatus.OK);
 	        }else {
 	            return new ResponseEntity<>("Invalid username/passsword",HttpStatus.FORBIDDEN);
 	        }

@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "jwt.expiry.duration",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.expiry.duration'"
+  },
+  {
+    "name": "jwt.issuer",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.issuer'"
+  },
+  {
+    "name": "jwt.algorithm.key",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.algorithm.key'"
+  }
+]}
